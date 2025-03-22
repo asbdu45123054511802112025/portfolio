@@ -1,0 +1,142 @@
+Below is an example of a simple airline webpage using HTML, CSS, and JavaScript. It includes a basic flight search form and dynamic functionality:
+
+HTML
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Airline Booking</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Welcome to SkyHigh Airlines</h1>
+  </header>
+  <main>
+    <section class="search-form">
+      <h2>Book Your Flight</h2>
+      <form id="flightForm">
+        <label for="departure">Departure:</label>
+        <input type="text" id="departure" placeholder="City or Airport" required>
+        
+        <label for="destination">Destination:</label>
+        <input type="text" id="destination" placeholder="City or Airport" required>
+        
+        <label for="departure-date">Departure Date:</label>
+        <input type="date" id="departure-date" required>
+        
+        <label for="return-date">Return Date:</label>
+        <input type="date" id="return-date">
+        
+        <button type="submit">Search Flights</button>
+      </form>
+      <div id="results"></div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 SkyHigh Airlines. All Rights Reserved.</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
+
+CSS (styles.css)
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+}
+
+header {
+  background-color: #0078d7;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+h1 {
+  margin: 0;
+}
+
+main {
+  padding: 2rem;
+}
+
+.search-form {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 2rem auto;
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+}
+
+input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #0078d7;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  margin-top: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #005fa3;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #0078d7;
+  color: white;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+JavaScript (script.js)
+
+document.getElementById('flightForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  
+  const departure = document.getElementById('departure').value;
+  const destination = document.getElementById('destination').value;
+  const departureDate = document.getElementById('departure-date').value;
+  const returnDate = document.getElementById('return-date').value;
+  
+  const results = document.getElementById('results');
+  
+  if (!departure || !destination || !departureDate) {
+    results.innerHTML = `<p style="color: red;">Please fill in all required fields.</p>`;
+    return;
+  }
+
+  results.innerHTML = `
+    <h3>Flight Search Results</h3>
+    <p>From: ${departure}</p>
+    <p>To: ${destination}</p>
+    <p>Departure: ${departureDate}</p>
+    ${returnDate ? `<p>Return: ${returnDate}</p>` : ''}
+    <p>Flights will be displayed here.</p>
+  `;
+});
+
